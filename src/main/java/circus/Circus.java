@@ -1,12 +1,12 @@
 package circus;
 
-import circus.animal.Animal;
-import circus.animal.Duck;
-import circus.animal.Parrot;
-import circus.animal.Tiger;
+import circus.animal.*;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circus {
     private static Animal[] animals = {
@@ -41,8 +41,41 @@ public class Circus {
     }
 
     public static void main(String[] args) {
+        System.out.println("Number of animals: " + animals.length);
         makeAnimalsTalk();
         System.out.println("Total value of animals " + calculateAssetValue(animals));
         System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        // throws indexoutofbound animals[3] = new Tiger("Dan");
+
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        printAllAnimals(animalArrayList);
+        System.out.println("Number of animals in the array list: " + animalArrayList.size());
+        animalArrayList.add(new Duck("Goose"));
+        animalArrayList.add(new Parrot("Dolly"));
+        System.out.println("Number of animals in the array list: " + animalArrayList.size());
+        printAllAnimals(animalArrayList);
+
+        Duck louie = new Duck("Louie");
+        Elephant strongOne = new Elephant("StrongOne");
+        Parrot andy = new Parrot("Andy");
+
+        animalArrayList.add(louie);
+        animalArrayList.add(strongOne);
+        animalArrayList.add(andy);
+        printAllAnimals(animalArrayList);
+
+        System.out.println("Position of Louie is: " + animalArrayList.indexOf(louie)+1);
+        System.out.println();
+        System.out.println("Before Sorting");
+        printAllAnimals(animalArrayList);
+        animalArrayList.sort(Animal.AnimalNameComparator);
+        System.out.println("After Sorting");
+        printAllAnimals(animalArrayList);
+    }
+
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for (Animal a: animalArrayList) {
+            System.out.println(a);
+        }
     }
 }
