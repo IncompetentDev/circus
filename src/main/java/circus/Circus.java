@@ -97,5 +97,6 @@ public class Circus {
         for(Cage c: cages) {
             c.release();
         }
+        System.out.println("That's all folks!");
     }
 }
